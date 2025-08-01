@@ -22,8 +22,19 @@ class _DriverDashboardState extends State<DriverDashboard> {
   }
 
   Future<void> _loadData() async {
-    final requestProvider = Provider.of<RequestProvider>(context, listen: false);
-    await requestProvider.loadRequests(); // Load all requests for driver
+    try {
+      final requestProvider = Provider.of<RequestProvider>(context, listen: false);
+      await requestProvider.loadRequests(); // Load all requests for driver
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error loading data: ${e.toString()}'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -348,7 +359,7 @@ class _DriverDashboardState extends State<DriverDashboard> {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Request #${request.id.substring(0, 8)}',
+                          'Request #${request.id.length > 8 ? request.id.substring(0, 8) : request.id}',
                           style: const TextStyle(
                             fontSize: 12,
                             color: AppColors.textSecondary,

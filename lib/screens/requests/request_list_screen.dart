@@ -86,8 +86,9 @@ class _RequestListScreenState extends State<RequestListScreen> {
                     padding: const EdgeInsets.all(16),
                     itemCount: filteredRequests.length,
                     itemBuilder: (context, index) {
+                      // Safety check to prevent range errors
                       if (index >= filteredRequests.length) {
-                        return const SizedBox.shrink(); // Safety check
+                        return const SizedBox.shrink();
                       }
                       return _buildRequestCard(filteredRequests[index]);
                     },
@@ -112,6 +113,11 @@ class _RequestListScreenState extends State<RequestListScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         itemCount: filters.length,
         itemBuilder: (context, index) {
+          // Safety check
+          if (index >= filters.length) {
+            return const SizedBox.shrink();
+          }
+          
           final filter = filters[index];
           final isSelected = _selectedFilter == filter;
 
@@ -140,7 +146,13 @@ class _RequestListScreenState extends State<RequestListScreen> {
 
   List<ServiceRequest> _getFilteredRequests(List<ServiceRequest> requests) {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    final userRequests = requests.where((r) => r.userId == authProvider.user?.id).toList();
+    
+    // Safety check for user
+    if (authProvider.user == null) {
+      return [];
+    }
+    
+    final userRequests = requests.where((r) => r.userId == authProvider.user!.id).toList();
 
     switch (_selectedFilter) {
       case 'Pending':
@@ -244,7 +256,7 @@ class _RequestListScreenState extends State<RequestListScreen> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'ID: ${request.id.substring(0, 8)}',
+                        'ID: ${request.id.length > 8 ? request.id.substring(0, 8) : request.id}',
                         style: const TextStyle(
                           fontSize: 12,
                           color: AppColors.textSecondary,
