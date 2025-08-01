@@ -1,0 +1,44 @@
+name: vista
+description: A waste management Flutter application.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.1
+  http: ^1.1.0
+  shared_preferences: ^2.2.2
+  uuid: ^4.2.1
+  intl: ^0.19.0
+  url_launcher: ^6.1.10 # Use the latest stable version
+
+  # Google Maps
+  google_maps_flutter: ^2.5.0
+  geolocator: ^10.1.0
+  geocoding: ^2.1.1
+
+  # UI Components
+  cupertino_icons: ^1.0.6
+  flutter_svg: ^2.0.9
+  cached_network_image: ^3.3.0
+
+  # Charts and Analytics
+  fl_chart: ^0.65.0
+
+  # Permissions
+  permission_handler: ^11.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
