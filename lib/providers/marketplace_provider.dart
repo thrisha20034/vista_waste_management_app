@@ -51,8 +51,15 @@ class MarketplaceProvider with ChangeNotifier {
   }
 
   Future<void> addWasteItem(WasteItem item) async {
-    _wasteItems.insert(0, item);
+    _wasteItems.add(item);
     notifyListeners();
+    // In a real app, you would also save to backend
+  }
+
+  Future<void> removeWasteItem(String itemId) async {
+    _wasteItems.removeWhere((item) => item.id == itemId);
+    notifyListeners();
+    // In a real app, you would also remove from backend
   }
 
   Future<void> purchaseWasteItem(String itemId) async {
