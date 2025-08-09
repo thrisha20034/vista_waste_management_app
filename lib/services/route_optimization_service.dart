@@ -43,34 +43,33 @@ class RouteOptimizationService {
     // Create route stops from requests
     final stops = <RouteStop>[];
 
-    // Add starting point (depot/warehouse)
+    // Add starting point (depot/warehouse) - Mangalore City Corporation Office
     stops.add(RouteStop(
       id: 'start',
-      address: '123 Main Street, Downtown',
-      latitude: 37.7749,
-      longitude: -122.4194,
+      address: 'Mangalore City Corporation, Lalbagh Road, Mangalore',
+      latitude: 12.8697,
+      longitude: 74.8420,
       type: 'start',
     ));
 
-    // Add pickup stops from requests
-    for (int i = 0; i < requests.length; i++) {
-      final request = requests[i];
+    // Add pickup stops from actual request locations (already Mangalore locations)
+    for (final request in requests) {
       stops.add(RouteStop(
         id: request.id,
-        address: request.address,
-        latitude: request.latitude ?? (37.7749 + (i * 0.01)),
-        longitude: request.longitude ?? (-122.4194 + (i * 0.01)),
+        address: request.address, // Use actual request address
+        latitude: request.latitude,
+        longitude: request.longitude,
         type: 'pickup',
         request: request,
       ));
     }
 
-    // Add final destination (waste processing center)
+    // Add final destination (waste processing center) - Mangalore Waste Treatment Plant
     stops.add(RouteStop(
       id: 'destination',
-      address: '321 Elm Street, Warehouse District',
-      latitude: 37.7849,
-      longitude: -122.4094,
+      address: 'Antony Waste Handling Cell, Vamanjoor Industrial Area, Mangalore',
+      latitude: 12.8164,
+      longitude: 74.8731,
       type: 'destination',
     ));
 
