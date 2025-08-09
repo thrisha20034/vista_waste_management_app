@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../providers/request_provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../providers/auth_provider.dart';
+import '../../providers/request_provider.dart';
 import '../../models/service_request.dart';
 import '../../utils/colors.dart';
 import 'create_request_screen.dart';
@@ -117,7 +118,7 @@ class _RequestListScreenState extends State<RequestListScreen> {
           if (index >= filters.length) {
             return const SizedBox.shrink();
           }
-          
+
           final filter = filters[index];
           final isSelected = _selectedFilter == filter;
 
@@ -146,12 +147,12 @@ class _RequestListScreenState extends State<RequestListScreen> {
 
   List<ServiceRequest> _getFilteredRequests(List<ServiceRequest> requests) {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    
+
     // Safety check for user
     if (authProvider.user == null) {
       return [];
     }
-    
+
     final userRequests = requests.where((r) => r.userId == authProvider.user!.id).toList();
 
     switch (_selectedFilter) {
@@ -332,6 +333,19 @@ class _RequestListScreenState extends State<RequestListScreen> {
                       style: TextStyle(color: Colors.red),
                     ),
                   ),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton.icon(
+                      onPressed: () => _launchNavigation(request.latitude, request.longitude),
+                      icon: const Icon(Icons.navigation, color: AppColors.primary),
+                      label: const Text(
+                        'Navigate',
+                        style: TextStyle(color: AppColors.primary),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
@@ -437,6 +451,34 @@ class _RequestListScreenState extends State<RequestListScreen> {
           const SnackBar(
             content: Text('Request cancelled successfully'),
             backgroundColor: Colors.green,
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _launchNavigation(double latitude, double longitude) async {
+    final googleMapsUrl = 'https://www.google.com/maps/dir/?api=1&destination=$latitude,$longitude&travelmode=driving';
+
+    try {
+      if (await canLaunchUrl(Uri.parse(googleMapsUrl))) {
+        await launchUrl(Uri.parse(googleMapsUrl), mode: LaunchMode.externalApplication);
+      } else {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Could not launch navigation'),
+              backgroundColor: AppColors.error,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Navigation error: ${e.toString()}'),
+            backgroundColor: AppColors.error,
           ),
         );
       }
