@@ -142,7 +142,7 @@ class _CreateRequestScreenState extends State<CreateRequestScreen> {
                 controller: _addressController,
                 decoration: InputDecoration(
                   labelText: 'Collection Address',
-                  hintText: 'Enter pickup address',
+                  hintText: 'e.g., AJ Hospital, Bejai, Car Street, Mangalore',
                   prefixIcon: const Icon(Icons.location_on),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -296,8 +296,8 @@ class _CreateRequestScreenState extends State<CreateRequestScreen> {
         wasteType: _selectedWasteType,
         estimatedWeight: double.parse(_weightController.text),
         address: _addressController.text.trim(),
-        latitude: 37.7749, // Mock coordinates
-        longitude: -122.4194,
+        latitude: 12.8697, // Mangalore - AJ Hospital, Bejai, Car Street
+        longitude: 74.8420,
         status: RequestStatus.pending,
         createdAt: DateTime.now(),
       );
