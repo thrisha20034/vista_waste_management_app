@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'providers/auth_provider.dart';
 import 'providers/request_provider.dart';
 import 'providers/marketplace_provider.dart';
@@ -61,9 +62,10 @@ class VistaApp extends StatelessWidget {
             ),
             filled: true,
             fillColor: Colors.white,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           ),
-          cardTheme: CardThemeData( // Fix: Use CardThemeData instead of CardTheme
+          cardTheme: CardThemeData(
             elevation: 2,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -71,8 +73,54 @@ class VistaApp extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        home: const AuthWrapper(),
+        home: const SplashScreen(), // 👈 Use Splash Screen as the first screen
       ),
+    );
+  }
+}
+
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSplashScreen(
+      splash: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // 🟩 Add your logo
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              color: AppColors.primary,
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Image.asset(
+                'assets/vista.png', // 👈 your logo here
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            'Vista - Waste Management',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+      backgroundColor: AppColors.background,
+      nextScreen: const AuthWrapper(),
+      splashIconSize: 180,
+      duration: 3000, // milliseconds (3 seconds)
+      splashTransition: SplashTransition.fadeTransition, // You can use slideTransition, rotationTransition, etc.
+      animationDuration: const Duration(seconds: 1),
     );
   }
 }
@@ -84,17 +132,13 @@ class AuthWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AuthProvider>(
       builder: (context, authProvider, child) {
-        // Check if user is logged in
         if (authProvider.user != null) {
-          // Navigate based on user type
           if (authProvider.user!.userType == UserType.driver) {
             return const DriverDashboard();
           } else {
             return const UserDashboard();
           }
         }
-
-        // Show login screen if not authenticated
         return const LoginSelectionScreen();
       },
     );

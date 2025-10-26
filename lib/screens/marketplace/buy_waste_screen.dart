@@ -158,18 +158,18 @@ class _BuyWasteScreenState extends State<BuyWasteScreen> {
               ],
             ),
             const SizedBox(height: 12),
-            Row(
+            const Row(
               children: [
-                const Icon(
+                Icon(
                   Icons.location_on,
                   size: 16,
                   color: AppColors.textSecondary,
                 ),
-                const SizedBox(width: 4),
+                SizedBox(width: 4),
                 Expanded(
                   child: Text(
                     'Available in Mangalore',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14,
                       color: AppColors.textSecondary,
                     ),
@@ -334,7 +334,7 @@ class _BuyWasteScreenState extends State<BuyWasteScreen> {
   Widget _buildPriceCalculation() {
     final quantity = double.tryParse(_quantityController.text) ?? 0;
     final subtotal = quantity * widget.wasteItem.pricePerKg;
-    final deliveryFee = 50.0; // Fixed delivery fee
+    const deliveryFee = 50.0; // Fixed delivery fee
     final gst = subtotal * 0.18; // 18% GST
     final totalPrice = subtotal + deliveryFee + gst;
 
@@ -763,7 +763,7 @@ class _BuyWasteScreenState extends State<BuyWasteScreen> {
     try {
       final quantity = double.parse(_quantityController.text);
       final subtotal = quantity * widget.wasteItem.pricePerKg;
-      final deliveryFee = 50.0;
+      const deliveryFee = 50.0;
       final gst = subtotal * 0.18;
       final totalPrice = subtotal + deliveryFee + gst;
 
@@ -793,14 +793,14 @@ class _BuyWasteScreenState extends State<BuyWasteScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Order Details:'),
+                const Text('Order Details:'),
                 const SizedBox(height: 8),
                 Text('• Item: ${widget.wasteItem.title}'),
                 Text('• Quantity: ${quantity.toStringAsFixed(1)} kg'),
                 Text('• Total: ₹${totalPrice.toStringAsFixed(2)}'),
                 Text('• Payment: $paymentMethod'),
                 const SizedBox(height: 8),
-                Text('Delivery Address:'),
+                const Text('Delivery Address:'),
                 Text(_selectedAddress, style: const TextStyle(fontSize: 12)),
                 const SizedBox(height: 8),
                 const Text('The seller will contact you within 24 hours for delivery arrangements.'),
@@ -910,7 +910,7 @@ class _BuyWasteScreenState extends State<BuyWasteScreen> {
   Future<bool> _showPurchaseConfirmation(BuildContext context, String paymentMethod) async {
     final quantity = double.tryParse(_quantityController.text) ?? 0;
     final subtotal = quantity * widget.wasteItem.pricePerKg;
-    final deliveryFee = 50.0;
+    const deliveryFee = 50.0;
     final gst = subtotal * 0.18;
     final totalAmount = subtotal + deliveryFee + gst;
 

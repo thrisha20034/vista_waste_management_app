@@ -115,28 +115,52 @@ class _UserDashboardState extends State<UserDashboard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Welcome to Vista!',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Hello, ${authProvider.user?.name ?? 'User'}!',
-                          style: const TextStyle(
-                            color: Colors.white70,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                    PopupMenuButton<String>(
+                    Row(
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: [
+    // 🟩 Logo Circle
+    Container(
+      width: 60,
+      height: 60,
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(30),
+        child: Image.asset(
+          'assets/vista.png', // your logo path
+          fit: BoxFit.cover,
+        ),
+      ),
+    ),
+    const SizedBox(width: 12),
+
+    // 🟦 Text Section
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Welcome to Vista!',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          'Hello, ${authProvider.user?.name ?? 'User'}!',
+          style: const TextStyle(
+            color: Colors.white70,
+            fontSize: 16,
+          ),
+        ),
+      ],
+    ),
+  ],
+),
+PopupMenuButton<String>(
                       icon: const Icon(Icons.more_vert, color: Colors.white),
                       onSelected: (value) {
                         if (value == 'logout') {

@@ -16,19 +16,22 @@ class LoginSelectionScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Logo and Title
-              Container(
-                width: 120,
-                height: 120,
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(60),
-                ),
-                child: const Icon(
-                  Icons.recycling,
-                  size: 60,
-                  color: Colors.white,
-                ),
-              ),
+             Container(
+  width: 120,
+  height: 120,
+  decoration: BoxDecoration(
+    color: AppColors.primary,
+    borderRadius: BorderRadius.circular(60),
+  ),
+  child: ClipRRect(
+    borderRadius: BorderRadius.circular(60),
+    child: Image.asset(
+      'assets/vista.png', // replace with your actual logo path
+      fit: BoxFit.cover,
+    ),
+  ),
+),
+
               const SizedBox(height: 32),
               const Text(
                 'Vista',

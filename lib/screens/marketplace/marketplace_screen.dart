@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/marketplace_provider.dart';
-import '../../models/waste_item.dart'; // Add this import
+// Add this import
 import '../../utils/colors.dart';
-import '../../widgets/custom_card.dart';
 import 'buy_waste_screen.dart';
 import 'sell_waste_screen.dart';
 
@@ -105,8 +104,8 @@ class _BuyWasteListTab extends StatelessWidget {
                   child: const Icon(Icons.eco, color: Colors.green),
                 ),
                 title: Text(item.title),
-                subtitle: Text('${item.weight} kg - \$${item.pricePerKg}/kg'),
-                trailing: Text('\$${(item.weight * item.pricePerKg).toStringAsFixed(2)}'),
+                subtitle: Text('${item.weight} kg - Rs.${item.pricePerKg}/kg'),
+                trailing: Text('Rs.${(item.weight * item.pricePerKg).toStringAsFixed(2)}'),
                 onTap: () {
                   Navigator.push(
                     context,

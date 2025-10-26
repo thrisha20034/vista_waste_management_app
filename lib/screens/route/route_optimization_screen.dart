@@ -98,7 +98,7 @@ class _RouteOptimizationScreenState extends State<RouteOptimizationScreen> {
           break;
         default:
           icon = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange);
-          title = '📍 Pickup ${i}';
+          title = '📍 Pickup $i';
       }
 
       markers.add(
@@ -368,7 +368,7 @@ class _RouteOptimizationScreenState extends State<RouteOptimizationScreen> {
       default:
         icon = Icons.location_on;
         color = Colors.orange;
-        title = 'Delivery Stop ${index}';
+        title = 'Delivery Stop $index';
     }
 
     return Padding(
@@ -429,11 +429,11 @@ class _RouteOptimizationScreenState extends State<RouteOptimizationScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          const Row(
             children: [
-              const Icon(Icons.route, color: AppColors.primary, size: 20),
-              const SizedBox(width: 8),
-              const Text(
+              Icon(Icons.route, color: AppColors.primary, size: 20),
+              SizedBox(width: 8),
+              Text(
                 'Mangalore Route Summary',
                 style: TextStyle(
                   fontSize: 16,

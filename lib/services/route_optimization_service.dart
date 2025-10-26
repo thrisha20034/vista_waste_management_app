@@ -175,7 +175,7 @@ class RouteOptimizationService {
   static double _calculateFuelSavings(double optimizedDistance) {
     // Assume 20% savings compared to unoptimized route
     final unoptimizedDistance = optimizedDistance * 1.25;
-    final fuelConsumption = 0.08; // liters per km
+    const fuelConsumption = 0.08; // liters per km
     return (unoptimizedDistance - optimizedDistance) * fuelConsumption;
   }
 }

@@ -629,7 +629,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                   ],
                 ),
               );
-            }).toList(),
+            }),
           ],
         ),
       ),
@@ -844,7 +844,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                   ],
                 ),
               );
-            }).toList(),
+            }),
           ],
         ),
       ),

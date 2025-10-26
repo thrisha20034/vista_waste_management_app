@@ -259,7 +259,7 @@ class _SellWasteScreenState extends State<SellWasteScreen> {
                 color: AppColors.info.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
@@ -269,8 +269,8 @@ class _SellWasteScreenState extends State<SellWasteScreen> {
                         color: AppColors.info,
                         size: 20,
                       ),
-                      const SizedBox(width: 8),
-                      const Text(
+                      SizedBox(width: 8),
+                      Text(
                         'Selling Tips',
                         style: TextStyle(
                           fontSize: 16,
@@ -280,8 +280,8 @@ class _SellWasteScreenState extends State<SellWasteScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
-                  const Text(
+                  SizedBox(height: 12),
+                  Text(
                     '• Clean and sort your waste properly\n'
                         '• Provide accurate weight estimates\n'
                         '• Set competitive prices\n'
