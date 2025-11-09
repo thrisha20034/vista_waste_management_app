@@ -45,25 +45,52 @@ class _RequestListScreenState extends State<RequestListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        title: const Text('My Requests'),
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const CreateRequestScreen(),
-                ),
-              ).then((_) => _loadRequests());
-            },
+     appBar: AppBar(
+  backgroundColor: AppColors.primary,
+  foregroundColor: Colors.white,
+ title: Column(
+  mainAxisSize: MainAxisSize.min,
+  children: [
+    Row(
+      children: [
+        ClipOval(
+          child: Image.asset(
+            'assets/vista.png', // your logo path
+            height: 40,
+            width: 40,
+            fit: BoxFit.cover,
           ),
-        ],
-      ),
-      body: RefreshIndicator(
+        ),
+        const SizedBox(width: 120),
+        const Text(
+          'My Requests',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 17,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    ),
+    const SizedBox(height: 4),
+  ],
+),
+centerTitle: true,
+  actions: [
+    IconButton(
+      icon: const Icon(Icons.add),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const CreateRequestScreen(),
+          ),
+        ).then((_) => _loadRequests());
+      },
+    ),
+  ],
+),
+body: RefreshIndicator(
         onRefresh: _loadRequests,
         child: Column(
           children: [

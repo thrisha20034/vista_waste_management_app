@@ -32,11 +32,17 @@ dependencies:
   # Permissions
   permission_handler: ^11.1.0
   animated_splash_screen: ^1.3.0
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/vista.png"
 
 flutter:
   uses-material-design: true

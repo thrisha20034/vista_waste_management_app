@@ -36,7 +36,34 @@ class _MarketplaceScreenState extends State<MarketplaceScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Marketplace'),
+        title: Column(
+  mainAxisSize: MainAxisSize.min,
+  children: [
+    Row(
+      children: [
+        ClipOval(
+          child: Image.asset(
+            'assets/vista.png', // your logo path
+            height: 40,
+            width: 40,
+            fit: BoxFit.cover,
+          ),
+        ),
+        const SizedBox(width: 120),
+        const Text(
+          'MarketPlace',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 17,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    ),
+    const SizedBox(height: 4),
+  ],
+),
+centerTitle: true,
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         bottom: TabBar(

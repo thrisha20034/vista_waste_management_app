@@ -55,7 +55,32 @@ class _BuyWasteScreenState extends State<BuyWasteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Buy Waste'),
+        automaticallyImplyLeading: false,
+        title: Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Row(children: [
+Image.asset(
+        'assets/vista.png', // your logo path
+        height: 40,
+      ),
+      SizedBox(width: 120,),
+      const Text(
+            'Buy Waste',
+            style: TextStyle(fontWeight: FontWeight.bold,
+              fontSize: 17,
+              color: Colors.white,
+            ),
+          ),
+      ],),
+       
+      // Logo on top
+      
+      const SizedBox(height: 4),
+      // App name and subtitle
+    ],
+  ),
+  centerTitle: true,
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
       ),

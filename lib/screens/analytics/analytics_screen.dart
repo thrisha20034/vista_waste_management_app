@@ -59,7 +59,34 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Analytics & Insights'),
+       title: Column(
+  mainAxisSize: MainAxisSize.min,
+  children: [
+    Row(
+      children: [
+        ClipOval(
+          child: Image.asset(
+            'assets/vista.png', // your logo path
+            height: 40,
+            width: 40,
+            fit: BoxFit.cover,
+          ),
+        ),
+        const SizedBox(width: 120),
+        const Text(
+          'Analytics',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 17,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    ),
+    const SizedBox(height: 4),
+  ],
+),
+
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         actions: [
